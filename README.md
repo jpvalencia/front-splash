@@ -17,4 +17,4 @@ npm run dev
 ```
 
 - localhost:3000/index
-- localhost:3000/index
+- localhost:3000/login
