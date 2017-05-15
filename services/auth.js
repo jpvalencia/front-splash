@@ -1,12 +1,23 @@
 const axios = require('axios');
-let url = 'https://auth-whdagkqfxi.now.sh/auth/validate';
-if(process.env.NODE_ENV !== 'production') {
-  url = 'http://localhost:3001/auth/validate';
+let urlAuth = 'http://localhost:3001';
+let urlBff = 'http://localhost:3000';
+let tokenActivateAccountUrl = '/auth/validate-token-activate-account';
+let activateAccountUrl = '/activate-account';
+let activateAccountAuth = '/auth/activate';
+if(process.env.NODE_ENV === 'production') {
+  urlAuth = 'https://auth-kcnmeoimyf.now.sh';
+  urlBff = 'https://hipotecariofacil.cl';
 }
 module.exports = {
-  validateToken: (token) => {
-    return axios.get(url, {
-      headers: {'Authorization': 'Basic '+  token}
+  validateToken: (email, token) => {
+    return axios.get(urlAuth+tokenActivateAccountUrl, {
+      params: { email, token }
     });
+  },
+  activateAccountAuth: (email, password, token) => {
+    return axios.post(urlAuth + activateAccountAuth, { email, token, password });
+  },
+  activateAccount: (email, password, token) => {
+    return axios.post(urlBff + activateAccountUrl, { email, token, password });
   }
 };
