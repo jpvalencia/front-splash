@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "now -e EMAIL_USER=@useremail -e EMAIL_PASSWORD=@useremailpassword"
   },
   "dependencies": {
     "axios": "^0.16.1",
@@ -11,6 +12,8 @@
     "express": "^4.14.0",
     "lodash": "^4.17.4",
     "next": "2.2.0",
+    "nodemailer": "^4.0.1",
+    "nprogress": "^0.2.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "styled-jsx": "^0.5.7"

@@ -1,5 +1,7 @@
+import Header from '../components/Header'
 export default () => (
   <div>
+  <Header />
   <h1>login</h1>
   <form>
     <p>

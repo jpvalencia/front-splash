@@ -3,6 +3,7 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const _  = require('lodash');
 const auth = require('./services/auth');
+const emailService = require('./services/email');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -41,14 +42,23 @@ app.prepare()
     if(token && email && token) {
       auth.activateAccountAuth(email, password, token)
       .then((result) => {
-        return app.render(req, res, '/activate-account-success', req.query);
+        try{
+          emailService.sendActivateAccountEmail(email);
+        }
+        catch(e){
+          console.log("ERROR ENVIANDO EL MAIL DE CONFIRMACION", e)
+        }
+        return res.status(200).send();
+        following();
+      })
+      .catch((e) => {
+        console.log("ERROR ACTIVANDO LA CUENTA", e)
+        res.status(500).send();
         following();
       });
-      return;
-      following();
     }
     else {
-      return app.render(req, res, '/activate-account-error', req.query);
+      res.status(401).send();
       following();
     }
 
@@ -86,6 +96,10 @@ app.prepare()
     return app.render(req, res, '/index', req.query);
     following();
   });
+
+  server.get('*', (req, res) => {
+   return handle(req, res)
+ })
 
   server.listen(3000, (err) => {
     if (err) throw err

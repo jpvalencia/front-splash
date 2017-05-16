@@ -5,7 +5,7 @@ let tokenActivateAccountUrl = '/auth/validate-token-activate-account';
 let activateAccountUrl = '/activate-account';
 let activateAccountAuth = '/auth/activate';
 if(process.env.NODE_ENV === 'production') {
-  urlAuth = 'https://auth-kcnmeoimyf.now.sh';
+  urlAuth = 'https://auth-okrspkbqgq.now.sh';
   urlBff = 'https://hipotecariofacil.cl';
 }
 module.exports = {

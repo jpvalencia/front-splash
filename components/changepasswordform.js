@@ -1,6 +1,6 @@
 import React from 'react';
+import Router from 'next/router'
 import axios from 'axios';
-import auth from '../services/auth';
 
 export default class extends React.Component {
   constructor(props) {
@@ -36,7 +36,22 @@ export default class extends React.Component {
       }
 
       if(validateOk) {
-        e.target.submit();
+        axios.post("/activate-account", {
+          email: this.props.email,
+          token: this.props.token,
+          password: this.state.password})
+          .then((result) => {
+            if(result.status === 200) {
+              Router.push('/activate-account-success')
+            }
+            else {
+              Router.push('/activate-account-error')
+            }
+          })
+          .catch((e)=> {
+            Router.push('/activate-account-error')
+          });
+
       }
 
     }
@@ -50,7 +65,7 @@ export default class extends React.Component {
         !this.state.passwordEqualValidation ?
         (<h2>No son iguales las passwords</h2>): ""
       }
-      <form action="/activate-account" onSubmit={this.submit} method = "POST">
+      <form  onSubmit={this.submit}>
         <p>
         <label>
           Email:

@@ -1,5 +1,6 @@
 import React from 'react';
 import ChangepasswordformComp from '../components/changepasswordform';
+import Header from '../components/Header';
 
 class Changepasswordform extends React.Component {
   static getInitialProps({query}){
@@ -10,7 +11,10 @@ class Changepasswordform extends React.Component {
   }
 
   render() {
-    return <ChangepasswordformComp email={this.props.email} token={this.props.token}></ChangepasswordformComp>
+    return (<div>
+      <Header />
+      <ChangepasswordformComp email={this.props.email} token={this.props.token}></ChangepasswordformComp>
+    </div>)
   }
 
 }
