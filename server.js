@@ -64,30 +64,28 @@ app.prepare()
 
   });
 
-  server.get('/dashboard', (req, res, following) => {
-    let authorization = _.get(req, 'headers.Authorization');
-    const token = authorization ? authorization.split(' ')[1]: null;
-    if(token) {
-      auth.validateToken(token)
+  server.post('/auth', (req, res, following) => {
+    const email = _.get(req, 'body.email');
+    const password = _.get(req, 'body.password');
+    if(password && email) {
+      auth.login(email, password)
       .then((result) => {
-        return app.render(req, res, '/dashboard', req.query)
+        res.status(200).send(result.data);
         following();
       })
       .catch((e) => {
-        return app.render(req, res, '/login', req.query);
+        console.log("Error logueando", e)
+        res.status(401).send();
         following();
-      });
-      return;
-      following();
+      })
     }
     else {
-      return app.render(req, res, '/login', req.query);
+      res.status(401).send();
       following();
     }
-
-  }, (req, res, following) => {
-
   });
+
+
   server.get('/login', (req, res, following) => {
     return app.render(req, res, '/login', req.query);
     following();

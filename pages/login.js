@@ -1,21 +1,27 @@
-import Header from '../components/Header'
-export default () => (
-  <div>
-  <Header />
-  <h1>login</h1>
-  <form>
-    <p>
-    <label>
-      email:
-      <input type="email" name="email" />
-    </label>
-    <label>
-      Password:
-      <input type="password" name="password" />
-    </label>
-    <input type="submit" value="Submit" />
-    </p>
-  </form>
-  </div>
+import React from 'react'
+import Router from 'next/router'
+import Page from '../components/Page'
+import Login from '../components/Login'
+import Layout from '../components/Layout'
+import Session from '../components/session'
+import {has} from 'lodash';
 
-)
+export default class extends Page {
+  componentDidMount() {
+    let session = Session.getSession();
+
+    if(has(session,'userData')){
+      Router.push({pathname: '/index'})
+    }
+  }
+
+  render() {
+    return (
+      <Layout >
+      <Login />
+      </Layout>
+    )
+
+  }
+
+}

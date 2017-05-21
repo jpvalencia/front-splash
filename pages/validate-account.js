@@ -1,6 +1,6 @@
 import React from 'react';
 import ChangepasswordformComp from '../components/changepasswordform';
-import Header from '../components/Header';
+import Layout from '../components/Layout';
 
 class Changepasswordform extends React.Component {
   static getInitialProps({query}){
@@ -11,10 +11,9 @@ class Changepasswordform extends React.Component {
   }
 
   render() {
-    return (<div>
-      <Header />
+    return (<Layout>
       <ChangepasswordformComp email={this.props.email} token={this.props.token}></ChangepasswordformComp>
-    </div>)
+    </Layout>)
   }
 
 }
