@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import Header from '../components/Header';
+import Layout from '../components/Layout';
 export default () => (
   <div>
-  <Header />
+  <Layout>
   <h1>
     Activacion ok
   </h1>
   <Link prefetch href='/login'><a>Login</a></Link>
+  </Layout>
   </div>
 )

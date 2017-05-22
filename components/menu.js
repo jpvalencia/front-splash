@@ -7,19 +7,23 @@ export default class extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {userData: false};
   }
 
-  componentDidMount() {
-    const session = Session.getSession();
-    let userData = get(session, 'userData');
+  componentDidMount= () => {
     this.setState({
-      userData: userData
+      userData: this.getUserData()
     })
-
   }
 
-  logout() {
+  getUserData = () => {
+    const session = Session.getSession();
+    return get(session, 'userData');
+  }
+
+  logout = () => {
     Session.cleanSession();
+    this.setState({userData: "sdfds"})
     Router.push('/index')
   }
 

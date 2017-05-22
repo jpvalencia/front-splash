@@ -3,7 +3,10 @@ const next = require('next');
 const bodyParser = require('body-parser');
 const _  = require('lodash');
 const auth = require('./services/auth');
+const printer = require('./services/printer');
 const emailService = require('./services/email');
+const restrictedService = require('./middlewares/restrictedService')
+
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -19,7 +22,7 @@ app.prepare()
     const email = _.get(req, 'query.email');
     const token = _.get(req, 'query.token');
     if(token && email) {
-      auth.validateToken(email, token)
+      auth.validateTokenActivateAccount(email, token)
       .then((result) => {
         return app.render(req, res, '/validate-account', req.query)
         following();
@@ -94,6 +97,21 @@ app.prepare()
     return app.render(req, res, '/index', req.query);
     following();
   });
+
+
+  server.post('/sendQuotes', restrictedService ,(req, res, following) => {
+      printer.sendQuotes(req.body)
+      .then((result) => {
+        res.status(200).send(result.data);
+        following();
+      })
+      .catch((e) => {
+        console.log("Error enviando el mail de cotizacion", e)
+        res.status(422).send();
+        following();
+      })
+
+});
 
   server.get('*', (req, res) => {
    return handle(req, res)
