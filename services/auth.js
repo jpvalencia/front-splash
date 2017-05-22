@@ -6,7 +6,7 @@ const activateAccountUrl = '/activate-account';
 const activateAccountAuth = '/auth/activate';
 const activateAccountLogin = '/auth/login';
 if(process.env.NODE_ENV === 'production') {
-  urlAuth = 'https://auth-lbnpotpvuf.now.sh';
+  urlAuth = 'https://auth-nzushmwbyg.now.sh';
 }
 module.exports = {
   validateTokenActivateAccount: (email, token) => {
