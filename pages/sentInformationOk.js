@@ -7,7 +7,7 @@ export default () => (
   <h1>
       Cotizacion enviada
   </h1>
-  <Link prefetch href='/dashbard'><a>Dashboard</a></Link>
+  <Link prefetch href='/dashboard'><a>Dashboard</a></Link>
   </Layout>
   </div>
 )

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const urlAuth = 'http://localhost:3001';
+let urlAuth = 'http://localhost:3001';
 const tokenActivateAccountUrl = '/auth/validate-token-activate-account';
 const validateToken = '/auth/validate';
 const activateAccountUrl = '/activate-account';

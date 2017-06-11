@@ -24,10 +24,16 @@ export default class extends React.Component {
   render(){
     return (<div style={{ marginBottom: 20 }}>
       <Head>
+        <title>Hipotecario Facil</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Import CSS for nprogress */}
         <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
         {/* Import CSS for hipotecario facil */}
         <link rel='stylesheet' type='text/css' href='/static/hipotecario-facil.min.css' />
+        {/* Import CSS for hipotecario facil */}
+        <link rel='stylesheet' type='text/css' href='/static/dashboard.min.css' />
       </Head>
       <header>
       <Menu />
