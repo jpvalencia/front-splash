@@ -5,6 +5,8 @@ const _  = require('lodash');
 const auth = require('./services/auth');
 const printer = require('./services/printer');
 const emailService = require('./services/email');
+const user = require('./services/user');
+
 const restrictedService = require('./middlewares/restrictedService')
 
 
@@ -110,6 +112,51 @@ app.prepare()
         res.status(422).send();
         following();
       })
+
+});
+
+server.get('/user/projects', restrictedService ,(req, res, following) => {
+    const email = _.get(req, 'query.email');
+    const token = _.get(req, 'headers.authorization');
+    if(email) {
+      user.projects(email, token)
+      .then((result) => {
+        res.status(200).send(result.data);
+        following();
+      })
+      .catch((e) => {
+        console.log("Error enviando obteniendo los proyectos", e)
+        res.status(422).send();
+        following();
+      })
+    }
+    else {
+      console.log("Falta email para obtener los proyectos")
+      res.status(401).send();
+      following();
+    }
+
+});
+server.get('/user/financial-statement', restrictedService ,(req, res, following) => {
+    const email = _.get(req, 'query.email');
+    const token = _.get(req, 'headers.authorization');
+    if(email) {
+      user.financial_statement(email, token)
+      .then((result) => {
+        res.status(200).send(result.data);
+        following();
+      })
+      .catch((e) => {
+        console.log("Error obteniendo el resumen del estado de situacion", e)
+        res.status(422).send();
+        following();
+      })
+    }
+    else {
+      console.log("Falta email para obtener resumen del estado de situacion")
+      res.status(401).send();
+      following();
+    }
 
 });
 

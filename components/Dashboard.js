@@ -4,6 +4,7 @@ import axios from 'axios';
 import Session from '../components/session'
 import {has, get} from 'lodash';
 
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -37,25 +38,9 @@ export default class extends React.Component {
 
   render() {
 
-    return (<div className="container">
-        <div className="container-menu">
-          <ul>
-            <li>ico01</li>
-            <li>ico02</li>
-            <li>ico03</li>
-            <li>ico04</li>
-            <li>ico05</li>
-            <li>ico06</li>
-          </ul>
-        </div>
-        <div className="container-cards">
-          <div className="card"></div>
-          <div className="card"></div>
-          <div className="card"></div>
-          <div className="card"></div>
-          <div className="card"></div>
-        </div>
-    </div>)
+    return (
+    <div></div>
+    )
   }
 
 }

@@ -3,8 +3,8 @@ import Router from 'next/router';
 import Page from '../components/Page';
 import Layout from '../components/Layout';
 import Dashboard from '../components/Dashboard';
-import {has} from 'lodash';
-
+import Aside from '../components/Aside'
+import Section from '../components/Section'
 export default class extends Page {
 
   render() {
@@ -12,7 +12,8 @@ export default class extends Page {
 
     return (
       <Layout>
-      <Dashboard />
+        <Aside />
+        <Section />
       </Layout>
     )
 

@@ -6,10 +6,17 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header/>
-          { this.props.children }
-        <Footer/>
+        <div>
+          <Header/>
+        		<header role="banner">
+        			<section>
+        				<div className="logo"></div>
+        			</section>
+        		</header>
+        		<main>
+            { this.props.children }
+            </main>
+          <Footer/>
       </div>
     )
   }
