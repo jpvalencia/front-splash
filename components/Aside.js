@@ -91,6 +91,8 @@ export default class extends React.Component {
           <div className="data-profile">
             <span><strong>{this.state.userData.nombre}</strong></span>
             <span>{this.state.userData.email}</span>
+            <span><a href="#">Cambiar contraseña</a></span>
+						<span><a href="#">Logout</a></span>
           </div>
         </header>
       )
@@ -138,6 +140,11 @@ export default class extends React.Component {
           </li>
         </ul>
       </nav>
+      <footer role="banner">
+        <section>
+          <div className="logo"></div>
+        </section>
+      </footer>
     </aside>)
 
   }

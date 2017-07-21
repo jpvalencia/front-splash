@@ -4,7 +4,6 @@ import axios from 'axios';
 import Session from '../components/session'
 import {has, get} from 'lodash';
 
-
 export default class extends React.Component {
   constructor(props) {
     super(props);
