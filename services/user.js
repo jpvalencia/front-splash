@@ -19,5 +19,17 @@ module.exports = {
       headers: {
         authorization: token
       }});
+  },
+  update: (email, token, data) => {
+    return axios.put(urlUser + "/update",
+      {data},
+      {
+        params:{
+          email : email
+        },
+        headers: {
+          authorization: token
+        }
+      });
   }
 };

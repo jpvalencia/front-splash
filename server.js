@@ -160,6 +160,30 @@ server.get('/user/financial-statement', restrictedService ,(req, res, following)
 
 });
 
+server.put('/user/update', restrictedService ,(req, res, following) => {
+    const email = _.get(req, 'query.email');
+    const token = _.get(req, 'headers.authorization');
+    const body = _.get(req, 'body');
+    if(email && body) {
+      user.update(email, token, body)
+      .then((result) => {
+        res.status(200).send(result.data);
+        following();
+      })
+      .catch((e) => {
+        console.log("Error obteniendo acualizando los datos del usuario")
+        res.status(422).send();
+        following();
+      })
+    }
+    else {
+      console.log("Faltan datos para actualizar la informacion del usuario")
+      res.status(401).send();
+      following();
+    }
+
+});
+
   server.get('*', (req, res) => {
    return handle(req, res)
  })
