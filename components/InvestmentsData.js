@@ -6,7 +6,7 @@ export default class extends React.Component {
 
   render(){
 
-    return (<div>
+    return (
       <article role="form">
         <form action="" method="post">
           <h2>Inversiones</h2>
@@ -41,12 +41,7 @@ export default class extends React.Component {
           </div>
 
         </form>
-      </article>
-      <article role="button">
-        <span>Agregar Inversión</span>
-        <span className="icon">+</span>
-      </article>
-      </div>)
+      </article>)
 
   }
 

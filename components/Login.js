@@ -2,6 +2,7 @@ import React from 'react';
 import Router from 'next/router'
 import axios from 'axios';
 import session from '../components/session'
+import servicesConfiguration from '../config/services'
 
 export default class extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class extends React.Component {
   submit = (e) => {
     e.preventDefault();
     let self = this;
-    axios.post("/auth", {
+    axios.post(servicesConfiguration.auth + "/auth", {
       email: this.state.email,
       password: this.state.password})
       .then((result) => {

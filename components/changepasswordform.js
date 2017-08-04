@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router'
 import axios from 'axios';
-
+import servicesConfiguration from '../config/services';
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ export default class extends React.Component {
       }
 
       if(validateOk) {
-        axios.post("/activate-account", {
+        axios.post(servicesConfiguration.auth + "/activate-account", {
           email: this.props.email,
           token: this.props.token,
           password: this.state.password})

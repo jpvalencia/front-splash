@@ -12,7 +12,7 @@ export default class extends React.Component {
 
         <div className="row">
           <div className="column col-medium">
-            <input type="text" id="rut" placeholder="12345678-5" className="form-control" value={this.props.foid} onChange={this.props.onChangeFoid}/>
+            <input type="text" id="rut" placeholder="12345678-5" className="form-control" value={this.props.foid} onChange={this.props.onChangeFoid} onBlur = {this.props.onBlurFoid}/>
             <label htmlFor="rut">RUT</label>
           </div>
         </div>
