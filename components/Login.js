@@ -29,7 +29,7 @@ export default class extends React.Component {
   submit = (e) => {
     e.preventDefault();
     let self = this;
-    axios.post(servicesConfiguration.auth + "/auth", {
+    axios.post(servicesConfiguration.auth + "/auth/login", {
       email: this.state.email,
       password: this.state.password})
       .then((result) => {
