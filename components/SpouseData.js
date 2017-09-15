@@ -1,5 +1,6 @@
 import React from 'react'
 import {set, get} from 'lodash';
+import servicesHelper from './helpers/services';
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +44,11 @@ export default class extends React.Component {
     this.setState(state);
   }
 
+  update = () => {
+    const endpointUpdate = '/update/customer/information/spouses';
+    servicesHelper.update(endpointUpdate, this.state);
+  }
+
   render(){
 
     return (<div>
@@ -64,7 +70,7 @@ export default class extends React.Component {
               <label htmlFor="last_name_mate">Apellido Paterno</label>
             </div>
             <div className="column col-large">
-              <input type="text" id="mother_name_mate" className="form-control" value={this.state.mother_name} onChange={e => this.setStateData("mother_name", e)}/>
+              <input type="text" id="mother_name_mate" className="form-control" value={this.state.mother_name} onChange={e => this.setStateData("mother_name", e)} onBlur={e => this.update()}/>
               <label htmlFor="mother_name_mate">Apellido Materno</label>
             </div>
           </div>
@@ -93,7 +99,7 @@ export default class extends React.Component {
               <label htmlFor="gender_mate">Genero</label>
             </div>
             <div className="column col-large">
-              <input type="text" id="nationality" className="form-control" value={this.state.nationality} onChange={e => this.setStateData("nationality", e)}/>
+              <input type="text" id="nationality" className="form-control" value={this.state.nationality} onChange={e => this.setStateData("nationality", e)} onBlur={e => this.update()}/>
               <label htmlFor="nationality">Nacionalidad</label>
             </div>
           </div>
@@ -120,7 +126,7 @@ export default class extends React.Component {
               <label htmlFor="educational_level_mate">Nivel educacional</label>
             </div>
             <div className="column col-large">
-              <input type="text" className="form-control" id="degree" value={this.state.degree} onChange={e => this.setStateData("degree", e)}/>
+              <input type="text" className="form-control" id="degree" value={this.state.degree} onChange={e => this.setStateData("degree", e)} onBlur={e => this.update()}/>
               <label htmlFor="degree">Título / Profesión</label>
             </div>
           </div>
@@ -140,7 +146,7 @@ export default class extends React.Component {
               <label htmlFor="email_mate">Actividad / Cargo</label>
             </div>
             <div className="column col-large">
-              <input type="text" id="" className="form-control" value={this.state.net_income} onChange={e => this.setStateData("net_income", e)}/>
+              <input type="text" id="" className="form-control" value={this.state.net_income} onChange={e => this.setStateData("net_income", e)} onBlur={e => this.update()}/>
               <label htmlFor="">Renta líquida</label>
             </div>
           </div>
@@ -157,7 +163,7 @@ export default class extends React.Component {
               <label htmlFor="job_month_mate">Mes</label>
             </div>
             <div className="column col-small">
-              <input type="text" id="indep_year_mate" placeholder="AAAA" className="form-control" value={this.state.init_activity_year} onChange={e => this.setStateData("init_activity_year", e)}/>
+              <input type="text" id="indep_year_mate" placeholder="AAAA" className="form-control" value={this.state.init_activity_year} onChange={e => this.setStateData("init_activity_year", e)} onBlur={e => this.update()}/>
               <label htmlFor="job_year_mate">Año</label>
             </div>
           </div>
@@ -175,7 +181,7 @@ export default class extends React.Component {
               <label htmlFor="job_month_mate">Mes</label>
             </div>
             <div className="column col-small">
-              <input type="text" id="job_year_mate" placeholder="AAAA" className="form-control" value={this.props.job_init_year} onChange={e => this.setStateData("job_init_year", e)}/>
+              <input type="text" id="job_year_mate" placeholder="AAAA" className="form-control" value={this.props.job_init_year} onChange={e => this.setStateData("job_init_year", e)} onBlur={e => this.update()}/>
               <label htmlFor="job_year_mate">Año</label>
             </div>
           </div>
@@ -194,7 +200,7 @@ export default class extends React.Component {
               <label htmlFor="industry_mate">Giro / Actividad de la empresa</label>
             </div>
             <div className="column col-large">
-              <input type="text" id="" className="form-control" value={this.state.employer_address} onChange={e => this.setStateData("employer_address", e)}/>
+              <input type="text" id="" className="form-control" value={this.state.employer_address} onChange={e => this.setStateData("employer_address", e)} onBlur={e => this.update()}/>
               <label htmlFor="">Dirección de la empresa</label>
             </div>
            </div>
@@ -212,13 +218,13 @@ export default class extends React.Component {
               <label htmlFor="">Región</label>
             </div>
             <div className="column col-large">
-              <input type="text" id="phone" placeholder="56991234567" className="form-control" value={this.state.employer_phone} onChange={e => this.setStateData("employer_phone", e)}/>
+              <input type="text" id="phone" placeholder="56991234567" className="form-control" value={this.state.employer_phone} onChange={e => this.setStateData("employer_phone", e)} onBlur={e => this.update()}/>
               <label htmlFor="phone">Teléfono</label>
             </div>
           </div>
           <div className="row controls">
             <div className="alert ready"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit iusto, enim accusantium. Fugiat omnis tempora est nam autem eius quidem sit cum, quae facere ullam repudiandae sunt magni aspernatur amet.</small></div>
-            <button type="submit" className="btn-flat first-level btn-large">Guardar</button>
+            <button type="submit" className="btn-flat first-level btn-large" disabled>Guardar</button>
           </div>
         </form>
       </article>

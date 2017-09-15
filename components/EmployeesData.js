@@ -1,5 +1,6 @@
 import React from 'react'
 import {set, get} from 'lodash';
+import servicesHelper from './helpers/services';
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +30,12 @@ export default class extends React.Component {
     set(state, key, event.target.value)
     this.setState(state);
   }
+
+  update = () => {
+    const endpointUpdate = '/update/customer/information/employees';
+    servicesHelper.update(endpointUpdate, this.state);
+  }
+
   render(){
 
     return (<article role="form">
@@ -48,7 +55,7 @@ export default class extends React.Component {
             <label htmlFor="job_type">Tipo de empleo</label>
           </div>
           <div className="column col-large">
-            <input type="text" className="form-control" id="degree" value={this.state.degree} onChange={e => this.setStateData("degree", e)}/>
+            <input type="text" className="form-control" id="degree" value={this.state.degree} onChange={e => this.setStateData("degree", e)} onBlur={e => this.update()}/>
             <label htmlFor="degree">Jubilación percibida</label>
           </div>
         </div>
@@ -66,7 +73,7 @@ export default class extends React.Component {
             <label htmlFor="employer_address">Dirección empleador</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="industry" className="form-control" value={this.state.industry} onChange={e => this.setStateData("industry", e)}/>
+            <input type="text" id="industry" className="form-control" value={this.state.industry} onChange={e => this.setStateData("industry", e)} onBlur={e => this.update()}/>
             <label htmlFor="industry">Giro / Actividad</label>
           </div>
           <div className="column col-large">
@@ -74,7 +81,7 @@ export default class extends React.Component {
             <label htmlFor="job_title">Cargo</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="job_senority" className="form-control" value={this.state.job_senority} onChange={e => this.setStateData("job_senority", e)}/>
+            <input type="text" id="job_senority" className="form-control" value={this.state.job_senority} onChange={e => this.setStateData("job_senority", e)} onBlur={e => this.update()}/>
             <label htmlFor="job_senority">Antiguedad laboral</label>
           </div>
         </div>
@@ -91,7 +98,7 @@ export default class extends React.Component {
             <label htmlFor="job_month">Mes</label>
           </div>
           <div className="column col-small">
-            <input type="text" id="job_year" placeholder="AAAA" className="form-control" value={this.state.job_entry_year} onChange={e => this.setStateData("job_entry_year", e)}/>
+            <input type="text" id="job_year" placeholder="AAAA" className="form-control" value={this.state.job_entry_year} onChange={e => this.setStateData("job_entry_year", e)} onBlur={e => this.update()}/>
             <label htmlFor="job_year">Año</label>
           </div>
         </div>
@@ -101,7 +108,7 @@ export default class extends React.Component {
             <label htmlFor="net_income">Renta líquida mensual</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="" className="form-control" value={this.state.annualized_variable_bonus} onChange={e => this.setStateData("annualized_variable_bonus", e)}/>
+            <input type="text" id="" className="form-control" value={this.state.annualized_variable_bonus} onChange={e => this.setStateData("annualized_variable_bonus", e)} onBlur={e => this.update()}/>
             <label htmlFor="">Bono variable anualizado</label>
           </div>
         </div>
@@ -119,19 +126,19 @@ export default class extends React.Component {
             <label htmlFor="chief_name">Nombre jefe directo</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="chief_job_title" className="form-control" value={this.state.chief_job_title} onChange={e => this.setStateData("chief_job_title", e)}/>
+            <input type="text" id="chief_job_title" className="form-control" value={this.state.chief_job_title} onChange={e => this.setStateData("chief_job_title", e)} onBlur={e => this.update()}/>
             <label htmlFor="chief_job_title">Cargo jefe directo</label>
           </div>
         </div>
         <div className="row">
           <div className="column col-large">
-            <input type="text" id="previous_net_income" className="form-control" value={this.state.previous_net_income} onChange={e => this.setStateData("previous_net_income", e)}/>
+            <input type="text" id="previous_net_income" className="form-control" value={this.state.previous_net_income} onChange={e => this.setStateData("previous_net_income", e)} onBlur={e => this.update()}/>
             <label htmlFor="previous_net_income">Renta líquida anterior</label>
           </div>
         </div>
         <div className="row controls">
           <div className="alert pending"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit iusto, enim accusantium. Fugiat omnis tempora est nam autem eius quidem sit cum, quae facere ullam repudiandae sunt magni aspernatur amet.</small></div>
-          <button type="submit" className="btn-flat first-level btn-large">Guardar</button>
+          <button type="submit" className="btn-flat first-level btn-large" disabled>Guardar</button>
         </div>
       </form>
     </article>)

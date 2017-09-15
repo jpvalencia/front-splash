@@ -1,9 +1,6 @@
 import React from 'react'
-import axios from 'axios';
-import Router from 'next/router'
-import {set, get, pickBy} from 'lodash';
-import Session from '../components/session'
-import servicesConfiguration from '../config/services';
+import {set} from 'lodash';
+import servicesHelper from './helpers/services';
 
 export default class extends React.Component {
   constructor(props) {
@@ -44,48 +41,10 @@ export default class extends React.Component {
     this.setState(state);
   }
 
-  _getUserData = () => {
-      return pickBy(this.state, (data) => {
-        return data !== ""
-      })
+  update = () => {
+    const endpointUpdate = '/update/customer/information/personal';
+    servicesHelper.update(endpointUpdate, this.state);
   }
-
-  update =(e) => {
-    const data = this._getUserData();
-    const session = Session.getSession();
-    this.setState({
-      userData: get(session, 'userData'),
-    })
-    axios.interceptors.response.use((response) => {
-      return response;
-    }, function (error) {
-        if (error.response.status === 401) {
-            Router.push({ pathname: '/login'})
-        }
-        return Promise.reject(error.response);
-    });
-
-    axios.put(servicesConfiguration.user + "/update/customer/information/personal",
-      {data},
-      {
-        headers: {
-          authorization: get(session, 'token')
-        },
-        withCredentials:true
-    })
-    /*
-    .then((results) => {
-      if(results.status === 200) {
-        console.log("tuto guardado")
-      }
-    })
-    .catch((e)=>{
-      console.log("Error", e)
-    });
-    */
-  }
-
-
 
   render(){
 
@@ -107,7 +66,7 @@ export default class extends React.Component {
             <label htmlFor="last_name">Apellido Paterno</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="mother_name" className="form-control" value={this.state.mother_name} onChange={e => this.setStateData("mother_name", e)} onBlur={e => this.update(e)}/>
+            <input type="text" id="mother_name" className="form-control" value={this.state.mother_name} onChange={e => this.setStateData("mother_name", e)} onBlur={e => this.update()}/>
             <label htmlFor="mother_name">Apellido Materno</label>
           </div>
         </div>
@@ -138,7 +97,7 @@ export default class extends React.Component {
             <label htmlFor="gender">Genero</label>
           </div>
           <div className="column col-large">
-            <select id="nationality" role="listbox" className="form-control"  onChange={e => this.setStateData("nationality", e)} onBlur={e => this.update(e)}>
+            <select id="nationality" role="listbox" className="form-control"  onChange={e => this.setStateData("nationality", e)} onBlur={e => this.update()}>
               <option value="selecciona">Selecciona</option>
             </select>
             <label htmlFor="nationality">Nacionalidad</label>
@@ -158,7 +117,7 @@ export default class extends React.Component {
             <label htmlFor="marital_status">Estado civil</label>
           </div>
           <div className="column col-large">
-            <select id="marital_regime" role="listbox" className="form-control" onChange={e => this.setStateData("marital_regime", e)} onBlur={e => this.update(e)}>
+            <select id="marital_regime" role="listbox" className="form-control" onChange={e => this.setStateData("marital_regime", e)} onBlur={e => this.update()}>
               <option value="selecciona">Selecciona</option>
               <option value="Con separación de bienes">Con separación de bienes</option>
               <option value="Sociedad conyugal">Sociedad conyugal</option>
@@ -174,7 +133,7 @@ export default class extends React.Component {
             <label htmlFor="phone">Teléfono móvil</label>
           </div>
           <div className="column col-large">
-            <input type="text" className="form-control" id="" placeholder="info@hipotecariofacil.com" value={this.state.user_email} onChange={e => this.setStateData("user_email", e)} onBlur={e => this.update(e)}/>
+            <input type="text" className="form-control" id="" placeholder="info@hipotecariofacil.com" value={this.state.user_email} onChange={e => this.setStateData("user_email", e)} onBlur={e => this.update()}/>
             <label htmlFor="email">Correo electrónico</label>
           </div>
         </div>
@@ -196,7 +155,7 @@ export default class extends React.Component {
             <label htmlFor="degree">Título / Profesión</label>
           </div>
           <div className="column col-large">
-            <input type="text" className="form-control" id="college" value={this.state.college} onChange={e => this.setStateData("college", e)} onBlur={e => this.update(e)}/>
+            <input type="text" className="form-control" id="college" value={this.state.college} onChange={e => this.setStateData("college", e)} onBlur={e => this.update()}/>
             <label htmlFor="college">Institución</label>
           </div>
         </div>
@@ -222,7 +181,7 @@ export default class extends React.Component {
             <label htmlFor="city_2">Comuna</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="city" className="form-control" value={this.state.city} onChange={e => this.setStateData("city", e)} onBlur={e => this.update(e)}/>
+            <input type="text" id="city" className="form-control" value={this.state.city} onChange={e => this.setStateData("city", e)} onBlur={e => this.update()}/>
             <label htmlFor="city">Ciudad</label>
           </div>
           <div className="column col-large">
@@ -230,7 +189,7 @@ export default class extends React.Component {
             <label htmlFor="state">Región</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="country" className="form-control" value={this.state.country} onChange={e => this.setStateData("country", e)} onBlur={e => this.update(e)}/>
+            <input type="text" id="country" className="form-control" value={this.state.country} onChange={e => this.setStateData("country", e)} onBlur={e => this.update()}/>
             <label htmlFor="country">País</label>
           </div>
         </div>
@@ -242,13 +201,13 @@ export default class extends React.Component {
             <label htmlFor="home_ownership">Tipo de vivienda</label>
           </div>
           <div className="column col-large">
-            <input type="text" id="home_ownership" className="form-control" value={this.state.monthly_payment} onChange={e => this.setStateData("monthly_payment", e)} onBlur={e => this.update(e)}/>
+            <input type="text" id="home_ownership" className="form-control" value={this.state.monthly_payment} onChange={e => this.setStateData("monthly_payment", e)} onBlur={e => this.update()}/>
             <label htmlFor="home_ownership">Costo mensual</label>
           </div>
         </div>
         <div className="row controls">
           <div className="alert pending"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit iusto, enim accusantium. Fugiat omnis tempora est nam autem eius quidem sit cum, quae facere ullam repudiandae sunt magni aspernatur amet.</small></div>
-          <button type="submit" className="btn-flat first-level btn-large">Guardar</button>
+          <button type="submit" className="btn-flat first-level btn-large" disabled >Guardar</button>
         </div>
       </form>
     </article>)
