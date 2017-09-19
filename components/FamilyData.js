@@ -1,6 +1,9 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import {set, get} from 'lodash';
+import FamilyResume from './FamilyResume';
+import servicesHelper from './helpers/servicesFamily';
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -19,36 +22,28 @@ export default class extends React.Component {
     };
   }
 
+  setStateData  = (key, event) => {
+    let state = this.state;
+    set(state, key, event.target.value)
+    this.setState(state);
+  }
+
+  update = () => {
+    const endpointUpdate = '/customer/information/family';
+    servicesHelper.update(endpointUpdate, this.state)
+    .then(()=> {
+      this.refs.resume.getResume();
+    });
+
+  }
+
   render(){
 
     return (
       <article role="form">
         <form action="" method="post">
           <h2>Cargas Familiares</h2>
-          <div className="row">
-            <table cellPadding="0" cellSpacing="0" className="responsive-table">
-              <thead>
-                <tr>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Parentesco</th>
-                  <th scope="col">Edad</th>
-                  <th scope="col">Género</th>
-                  <th scope="col">Editar</th>
-                  <th scope="col">Eliminar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td scope="row">Sacarías La Fuente De La Plaza</td>
-                  <td data-title="Parentesco" data-type="">Hijo</td>
-                  <td data-title="Edad" data-type="">100</td>
-                  <td data-title="Género" data-type="">Másculino</td>
-                  <td data-title="Editar" data-type=""><a href="#"><div className="edit"></div></a></td>
-                  <td data-title="Eliminar" data-type=""><a href="#"><div className="delete"></div></a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <FamilyResume ref="resume"/>
           <div className="custom-show-hide">
             <Collapsible trigger="Agregar Carga">
              <div className="collapse">
@@ -108,7 +103,7 @@ export default class extends React.Component {
                 </div>
               </div>
               <div className="row controls">
-                <button type="submit" className="btn-flat first-level btn-large">Guardar</button>
+                <button type="button" className="btn-flat first-level btn-large" onClick={this.update}>Guardar</button>
               </div>
               </div>
             </Collapsible>

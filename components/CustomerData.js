@@ -42,7 +42,7 @@ export default class extends React.Component {
   }
 
   update = () => {
-    const endpointUpdate = '/update/customer/information/personal';
+    const endpointUpdate = '/customer/information/personal';
     servicesHelper.update(endpointUpdate, this.state);
   }
 
