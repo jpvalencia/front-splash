@@ -21,7 +21,7 @@ const update = (url, state) => {
       return Promise.reject(error);
   });
 
-  return axios.put(servicesConfiguration.properties + url,
+  return axios.put(servicesConfiguration.vehicles + url,
     {data},
     {
       headers: {
@@ -46,7 +46,7 @@ const getResume = (url) => {
 
   if(!getKey(session, 'token')) {return }
 
-  return axios.get(servicesConfiguration.properties + url,
+  return axios.get(servicesConfiguration.vehicles + url,
     {
       headers: {
         authorization: getKey(session, 'token')
@@ -55,8 +55,8 @@ const getResume = (url) => {
   })
 };
 
-const deleteProperty = (url, propertyId) => {
-  const data = {id: propertyId};
+const deleteVehicle = (url, vehicleId) => {
+  const data = {id: vehicleId};
   const session = Session.getSession();
   axios.interceptors.response.use((response) => {
     return response;
@@ -67,7 +67,7 @@ const deleteProperty = (url, propertyId) => {
       return Promise.reject(error);
   });
 
-  return axios.delete(servicesConfiguration.properties + url,
+  return axios.delete(servicesConfiguration.vehicles + url,
     {
       data,
       headers: {
@@ -78,4 +78,4 @@ const deleteProperty = (url, propertyId) => {
 }
 
 
-export default {update, getResume, deleteProperty};
+export default {update, getResume, deleteVehicle};

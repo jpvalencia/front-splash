@@ -15,10 +15,10 @@ const update = (url, state) => {
   axios.interceptors.response.use((response) => {
     return response;
   }, function (error) {
-      if (error.response.status === 401) {
+      if (getKey(error, 'response.status') === 401) {
           Router.push({ pathname: '/login'})
       }
-      return Promise.reject(error.response);
+      return Promise.reject(error);
   });
 
   return axios.put(servicesConfiguration.family + url,
@@ -38,10 +38,10 @@ const getResume = (url) => {
   axios.interceptors.response.use((response) => {
     return response;
   }, function (error) {
-      if (error.response.status === 401) {
+      if (getKey(error, 'response.status') === 401) {
           Router.push({ pathname: '/login'})
       }
-      return Promise.reject(error.response);
+      return Promise.reject(error);
   });
 
   if(!getKey(session, 'token')) {return }
@@ -61,10 +61,10 @@ const deleteFamily = (url, familyId) => {
   axios.interceptors.response.use((response) => {
     return response;
   }, function (error) {
-      if (error.response.status === 401) {
+      if (getKey(error, 'response.status') === 401) {
           Router.push({ pathname: '/login'})
       }
-      return Promise.reject(error.response);
+      return Promise.reject(error);
   });
 
   return axios.delete(servicesConfiguration.family + url,
