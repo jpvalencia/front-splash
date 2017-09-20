@@ -1,5 +1,4 @@
 import React from 'react'
-import Collapsible from 'react-collapsible';
 import { each} from 'lodash';
 import servicesHelper from './helpers/servicesVehicles';
 export default class extends React.Component {

@@ -1,6 +1,8 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 import {set, get} from 'lodash';
+import InvestmentsResume from './InvestmentsResume';
+import servicesHelper from './helpers/servicesInvestments';
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -16,38 +18,24 @@ export default class extends React.Component {
     set(state, key, event.target.value)
     this.setState(state);
   }
+
+  update = () => {
+    const endpointUpdate = '/customer/information/investments';
+    servicesHelper.update(endpointUpdate, this.state)
+    .then(()=> {
+      this.refs.resume.getResume();
+    });
+  };
+
   render(){
 
     return (
       <article role="form">
         <form action="" method="post">
           <h2>Inversiones</h2>
-          <div className="row">
-            <table cellPadding="0" cellSpacing="0" className="responsive-table">
-              <thead>
-                <tr>
-                  <th scope="col">Tipo de inversión</th>
-                  <th scope="col">Institución</th>
-                  <th scope="col">Prenda</th>
-                  <th scope="col">Valor</th>
-                  <th scope="col">Editar</th>
-                  <th scope="col">Eliminar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td scope="row">Lorem Ipsum</td>
-                  <td data-title="Institución" data-type="">Lorem Ipsum</td>
-                  <td data-title="Prenda" data-type="">Lorem Ipsum</td>
-                  <td data-title="Valor" data-type="">000000000000</td>
-                  <td data-title="Editar" data-type=""><a href="#"><div className="edit"></div></a></td>
-                  <td data-title="Eliminar" data-type=""><a href="#"><div className="delete"></div></a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <InvestmentsResume ref="resume" />
           <div className="custom-show-hide">
-            <Collapsible trigger="Agregar Vehiculo">
+            <Collapsible trigger="Agregar Inversión">
                <div className="collapse">
                 <div className="row">
                   <div className="column col-large">
@@ -77,7 +65,7 @@ export default class extends React.Component {
                   </div>
                 </div>
                 <div className="row controls">
-                  <button type="submit" className="btn-flat first-level btn-large">Guardar</button>
+                  <button type="button" className="btn-flat first-level btn-large" onClick={this.update}>Guardar</button>
                 </div>
               </div>
             </Collapsible>
