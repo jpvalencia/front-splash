@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Session from '../components/session'
 import {get, set, each} from 'lodash';
 import axios from 'axios';
-//import Project from './Project';
 import servicesConfiguration from '../config/services';
 import CustomerData from './CustomerData';
 import EmployeesData from './EmployeesData';

@@ -20,7 +20,7 @@ export default class extends React.Component {
       income:"",
       pension_ammount:""
     };
-  }
+  };
 
   setStateData  = (key, event) => {
     let state = this.state;
@@ -34,8 +34,7 @@ export default class extends React.Component {
     .then(()=> {
       this.refs.resume.getResume();
     });
-
-  }
+  };
 
   render(){
 

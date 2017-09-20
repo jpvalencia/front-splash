@@ -1,18 +1,15 @@
 {
   "name": "bff",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production next start",
     "deploy": "now -e EMAIL_USER=@useremail -e EMAIL_PASSWORD=@useremailpassword"
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "body-parser": "^1.17.1",
-    "express": "^4.14.0",
     "lodash": "^4.17.4",
-    "next": "2.2.0",
-    "nodemailer": "^4.0.1",
+    "next": "3.2.0",
     "nprogress": "^0.2.0",
     "react": "15.5.4",
     "react-collapsible": "^2.0.0",
