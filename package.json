@@ -1,8 +1,8 @@
 {
   "name": "bff",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "dev": "next ",
+    "build": "next build && next export -o dist",
     "start": "NODE_ENV=production next start",
     "deploy": "now -e EMAIL_USER=@useremail -e EMAIL_PASSWORD=@useremailpassword"
   },
