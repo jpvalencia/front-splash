@@ -6,5 +6,6 @@ module.exports = {
     vehicles:process.env.NODE_ENV !== 'production'? "http://localhost:3008" :"https://hipopo-services-vehicles.now.sh",
     investments:process.env.NODE_ENV !== 'production'? "http://localhost:3009" :"https://hipopo-services-investments.now.sh",
     companies:process.env.NODE_ENV !== 'production'? "http://localhost:3010" :"https://hipopo-services-companies.now.sh",
-    personal:process.env.NODE_ENV !== 'production'? "http://localhost:3011" :"https://hipopo-services-personal.now.sh"
+    personal:process.env.NODE_ENV !== 'production'? "http://localhost:3011" :"https://hipopo-services-personal.now.sh",
+    employees:process.env.NODE_ENV !== 'production'? "http://localhost:3012" :"https://hipopo-services-employees.now.sh"
 }

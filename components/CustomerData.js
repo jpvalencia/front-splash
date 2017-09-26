@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {set, get} from 'lodash';
 import servicesHelper from './helpers/servicesPersonal';
 
@@ -45,24 +46,35 @@ export default class extends React.Component {
     const endpointGet = '/customer/information/personal';
     servicesHelper.get(endpointGet)
     .then((results) => {
-      let data = get(results, 'data.0');
+      let data = get(results, 'data');
       set(data, 'loaded', true);
       this.setState(data)
     });
 
   }
+  /*
+  isScrolledIntoView = () => {
+      const el = ReactDOM.findDOMNode(this.refs.customerData);
+      const elemTop = el.getBoundingClientRect().top;
+      const elemBottom = el.getBoundingClientRect().bottom;
 
+      return (elemTop >= 0) && (elemBottom <= window.innerHeight);
+  }
+  */
   update = () => {
     const endpointUpdate = '/customer/information/personal';
     servicesHelper.update(endpointUpdate, this.state);
   }
 
+
   render(){
     if(!this.state.loaded) {
-      return  <img src ="https://loading.io/assets/img/hourglass.svg"/>;
+      return  (<article role="form">
+        <img src ="https://loading.io/assets/img/hourglass.svg"/>
+      </article>);
     }
     return (<article role="form">
-      <form action="" method="post">
+      <form action="" method="post" >
         <h2>Datos Personales</h2>
 
         <div className="row">
@@ -102,7 +114,7 @@ export default class extends React.Component {
             <label htmlFor="year">Año</label>
           </div>
           <div className="column col-large">
-            <select id="gender" role="listbox" className="form-control" onChange={e => this.setStateData("gender", e)}>
+            <select id="gender" role="listbox" className="form-control" value={this.state.gender} onChange={e => this.setStateData("gender", e)}>
               <option value="selecciona">Selecciona</option>
               <option value="M">Masculino</option>
               <option value="F">Femenino</option>
@@ -110,7 +122,7 @@ export default class extends React.Component {
             <label htmlFor="gender">Genero</label>
           </div>
           <div className="column col-large">
-            <select id="nationality" role="listbox" className="form-control"  onChange={e => this.setStateData("nationality", e)} onBlur={e => this.update()}>
+            <select id="nationality" role="listbox" className="form-control" value={this.state.nationality}  onChange={e => this.setStateData("nationality", e)} onBlur={e => this.update()}>
               <option value="selecciona">Selecciona</option>
             </select>
             <label htmlFor="nationality">Nacionalidad</label>
@@ -119,7 +131,7 @@ export default class extends React.Component {
 
         <div className="row">
           <div className="column col-large">
-            <select id="marital_status" role="listbox" className="form-control" onChange={e => this.setStateData("marital_status", e)}>
+            <select id="marital_status" role="listbox" className="form-control" value={this.state.marital_status} onChange={e => this.setStateData("marital_status", e)}>
               <option value="selecciona">Selecciona</option>
               <option value="Casado">Casado</option>
               <option value="Soltero">Soltero</option>
@@ -130,7 +142,7 @@ export default class extends React.Component {
             <label htmlFor="marital_status">Estado civil</label>
           </div>
           <div className="column col-large">
-            <select id="marital_regime" role="listbox" className="form-control" onChange={e => this.setStateData("marital_regime", e)} onBlur={e => this.update()}>
+            <select id="marital_regime" role="listbox" className="form-control" value={this.state.marital_regime} onChange={e => this.setStateData("marital_regime", e)} onBlur={e => this.update()}>
               <option value="selecciona">Selecciona</option>
               <option value="Con separación de bienes">Con separación de bienes</option>
               <option value="Sociedad conyugal">Sociedad conyugal</option>
@@ -152,7 +164,7 @@ export default class extends React.Component {
         </div>
         <div className="row">
           <div className="column col-large">
-            <select id="educational_level" role="listbox" className="form-control" onChange={e => this.setStateData("educational_level", e)}>
+            <select id="educational_level" role="listbox" className="form-control" value={this.state.educational_level} onChange={e => this.setStateData("educational_level", e)}>
               <option value="selecciona">Selecciona</option>
               <option value="Educ media incompleta">Educ media incompleta</option>
               <option value="Educ media completa">Educ media completa</option>
@@ -208,7 +220,7 @@ export default class extends React.Component {
         </div>
         <div className="row">
           <div className="column col-large">
-            <select id="home_ownership" role="listbox" className="form-control" onChange={e => this.setStateData("home_ownership", e)}>
+            <select id="home_ownership" role="listbox" className="form-control" value={this.state.home_ownership} onChange={e => this.setStateData("home_ownership", e)}>
               <option value="selecciona">Selecciona</option>
             </select>
             <label htmlFor="home_ownership">Tipo de vivienda</label>

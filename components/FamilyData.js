@@ -40,7 +40,9 @@ export default class extends React.Component {
   render(){
 
     if(!this.state.loaded) {
-      return <img src ="https://loading.io/assets/img/hourglass.svg"/>;
+      return (<article role="form">
+        <img src ="https://loading.io/assets/img/hourglass.svg"/>
+        </article>);
     }
 
     return (
