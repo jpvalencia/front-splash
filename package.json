@@ -2,9 +2,9 @@
   "name": "bff",
   "scripts": {
     "dev": "next ",
-    "build": "next build && next export -o dist",
+    "build": "next build && next export -o frontend",
     "start": "NODE_ENV=production next start",
-    "deploy": "now -e EMAIL_USER=@useremail -e EMAIL_PASSWORD=@useremailpassword"
+    "deploy": "cd frontend && now -e EMAIL_USER=@useremail -e EMAIL_PASSWORD=@useremailpassword"
   },
   "dependencies": {
     "axios": "^0.16.1",

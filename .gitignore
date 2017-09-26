@@ -39,4 +39,4 @@ jspm_packages
 #build
 build
 .next
-out
+frontend
