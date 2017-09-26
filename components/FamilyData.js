@@ -8,7 +8,6 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded:false,
       dependent_quantity:"",
       name:"",
       relationship:"",
@@ -38,12 +37,6 @@ export default class extends React.Component {
   };
 
   render(){
-
-    if(!this.state.loaded) {
-      return (<article role="form">
-        <img src ="https://loading.io/assets/img/hourglass.svg"/>
-        </article>);
-    }
 
     return (
       <article role="form">

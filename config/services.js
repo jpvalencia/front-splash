@@ -7,5 +7,6 @@ module.exports = {
     investments:process.env.NODE_ENV !== 'production'? "http://localhost:3009" :"https://hipopo-services-investments.now.sh",
     companies:process.env.NODE_ENV !== 'production'? "http://localhost:3010" :"https://hipopo-services-companies.now.sh",
     personal:process.env.NODE_ENV !== 'production'? "http://localhost:3011" :"https://hipopo-services-personal.now.sh",
-    employees:process.env.NODE_ENV !== 'production'? "http://localhost:3012" :"https://hipopo-services-employees.now.sh"
+    employees:process.env.NODE_ENV !== 'production'? "http://localhost:3012" :"https://hipopo-services-employees.now.sh",
+    spouses:process.env.NODE_ENV !== 'production'? "http://localhost:3013" :"https://hipopo-services-spouses.now.sh"
 }

@@ -1,10 +1,12 @@
 import React from 'react'
 import {set, get} from 'lodash';
-import servicesHelper from './helpers/services';
+import servicesHelper from './helpers/servicesSpouses';
 export default class extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
+        loaded:false,
+        id:"",
         rut:"",
         name:"",
         last_name:"",
@@ -44,13 +46,28 @@ export default class extends React.Component {
     this.setState(state);
   }
 
+  componentDidMount() {
+    const endpointGet = '/customer/information/spouses';
+    servicesHelper.get(endpointGet)
+    .then((results) => {
+      let data = get(results, 'data');
+      set(data, 'loaded', true);
+      this.setState(data)
+    });
+
+  }
+
   update = () => {
     const endpointUpdate = '/update/customer/information/spouses';
     servicesHelper.update(endpointUpdate, this.state);
   }
 
   render(){
-
+    if(!this.state.loaded) {
+      return  (<article role="form">
+        <img src ="https://loading.io/assets/img/hourglass.svg"/>
+      </article>);
+    }
     return (<div>
       <article role="form">
         <form action="" method="post">
