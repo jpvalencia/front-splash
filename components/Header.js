@@ -34,6 +34,8 @@ export default class extends React.Component {
         <link rel='stylesheet' type='text/css' href='/static/hipotecario-facil.min.css' />
         {/* Import CSS for hipotecario facil */}
         <link rel='stylesheet' type='text/css' href='/static/dashboard.min.css' />
+        <link rel='stylesheet' type='text/css' href='/static/splashpage.min.css' />
+
     	</Head>
     )
 
