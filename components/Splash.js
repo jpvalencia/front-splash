@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router'
 import axios from 'axios';
-import session from '../components/session'
+import Header from '../components/Header';
 import servicesConfiguration from '../config/services'
 
 export default class extends React.Component {
@@ -9,7 +9,7 @@ export default class extends React.Component {
     super(props);
     this.state = {
       email : "",
-      failLogin: false
+      message : ""
     };
   }
 
@@ -27,16 +27,16 @@ export default class extends React.Component {
       .then((result) => {
         if(result.status === 200) {
           // session.saveSession(result.data.token, result.data.user);
-          self.setState({failLogin: false});
-          Router.push({pathname:'/login'});
+          self.setState({message: "Gracias, estaremos pronto en contacto!"});
         }
         else {
-          self.setState({failLogin: true});
+          self.setState({message: "Upps... algo falló!!"});
         }
       })
       .catch((e)=> {
         console.log("error", e);
-        self.setState({failLogin: true});
+        self.setState({message: "Ya estás inscrito, queda cada vez menos para que sepas de nosotros!"})
+
       });
 
     }
@@ -47,8 +47,7 @@ export default class extends React.Component {
 
     return (
       <div>
-      <header>
-      </header>
+      <Header/>
       <main>
        
       <article role="document">
@@ -63,8 +62,10 @@ export default class extends React.Component {
         <div className="row"><input type="text" className="form-control" onChange={this.emailChange} value={this.state.email} id="" placeholder="Email"></input></div>
         <div className="row"><button type="submit" className="btn-flat first-level">Enviar</button></div>
         </form>
+        
 
       </article>
+      <h3><b>{this.state.message}</b></h3>
             <footer>
       <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus tempora quia nobis debitis! Exercitationem, voluptatibus dolorum.</small>
       </footer>

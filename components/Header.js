@@ -3,8 +3,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 import NProgress from 'nprogress'
 import Router from 'next/router'
-import Menu from '../components/menu'
-import Session from '../components/session'
 import {get} from 'lodash';
 
 Router.onRouteChangeStart = (url) => {

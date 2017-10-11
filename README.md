@@ -1,13 +1,11 @@
-# BFF(BackEnd For Frontend)
-Servidor web mas frontend de hipotecario facil
+# FRONT
+Servidor web mas frontend
 
 ## How to use
 
-[Clona](https://github.com/hipotecariofacil/bff.git) el repositorio :
+[Clona](https://github.com/jpvalencia/front-splash.git) el repositorio :
 
-```bash
-git clone https://github.com/hipotecariofacil/bff.git
-```
+
 
 Install it and run:
 
@@ -16,5 +14,4 @@ npm install
 npm run dev
 ```
 
-- localhost:3000/index
-- localhost:3000/login
+- localhost:3003/splash

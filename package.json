@@ -1,5 +1,5 @@
 {
-  "name": "bff",
+  "name": "front",
   "scripts": {
     "dev": "next ",
     "build": "next build && next export -o frontend",
